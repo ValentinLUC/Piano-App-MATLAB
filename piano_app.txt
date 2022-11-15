@@ -1,0 +1,519 @@
+classdef piano_app < matlab.apps.AppBase
+
+    % Properties that correspond to app components
+    properties (Access = public)
+        UIFigure                 matlab.ui.Figure
+        PlayrandomnotesButton    matlab.ui.control.Button
+        PlayHappyBirthdayButton  matlab.ui.control.Button
+        FrequencyGauge           matlab.ui.control.LinearGauge
+        FrequencyGaugeLabel      matlab.ui.control.Label
+        Image4                   matlab.ui.control.Image
+        Image3                   matlab.ui.control.Image
+        Image                    matlab.ui.control.Image
+        OctaveSlider             matlab.ui.control.Slider
+        OctaveSliderLabel        matlab.ui.control.Label
+        ASharp                   matlab.ui.control.Button
+        GSharp                   matlab.ui.control.Button
+        FSharp                   matlab.ui.control.Button
+        DSharp                   matlab.ui.control.Button
+        CSharp                   matlab.ui.control.Button
+        B                        matlab.ui.control.Button
+        A                        matlab.ui.control.Button
+        G                        matlab.ui.control.Button
+        F                        matlab.ui.control.Button
+        E                        matlab.ui.control.Button
+        D                        matlab.ui.control.Button
+        C                        matlab.ui.control.Button
+        PianoAppLabel            matlab.ui.control.Label
+    end
+
+
+
+    % Callbacks that handle component events
+    methods (Access = private)
+
+        % Code that executes after component creation
+        function startupFcn(app)
+              clear all;
+              global a;
+              a = arduino("COM3", "MEGA2560"); % Description
+        end
+
+        % Button pushed function: C
+        function CButtonPushed(app, event)
+            global a;
+            value = get(app.OctaveSlider, "value");
+            playTone(a,"D9", 32.7*2^(value+1), 0.5);
+            app.FrequencyGauge.Value = 32.7*2^(value+1);
+        end
+
+        % Button pushed function: D
+        function DButtonPushed(app, event)
+            global a;
+            value = get(app.OctaveSlider, "value");
+            playTone(a,"D9", 36.71*2^(value+1), 0.5);
+            app.FrequencyGauge.Value = 36.71*2^(value+1);
+        end
+
+        % Button pushed function: E
+        function EButtonPushed(app, event)
+            global a;
+            value = get(app.OctaveSlider, "value");
+            playTone(a,"D9", 41.20*2^(value+1), 0.5);
+            app.FrequencyGauge.Value = 41.20*2^(value+1);
+        end
+
+        % Button pushed function: F
+        function FButtonPushed(app, event)
+            global a;
+            value = get(app.OctaveSlider, "value");
+            playTone(a,"D9", 43.65*2^(value+1), 0.5);
+            app.FrequencyGauge.Value = 43.65*2^(value+1);
+        end
+
+        % Button pushed function: G
+        function GButtonPushed(app, event)
+            global a;
+            value = get(app.OctaveSlider, "value");
+            playTone(a,"D9", 49.0*2^(value+1), 0.5);
+            app.FrequencyGauge.Value = 49.0*2^(value+1);
+        end
+
+        % Button pushed function: A
+        function AButtonPushed(app, event)
+            global a;
+            value = get(app.OctaveSlider, "value");
+            playTone(a,"D9", 55.0*2^(value+1), 0.5);
+            app.FrequencyGauge.Value = 55.0*2^(value+1);
+        end
+
+        % Button pushed function: B
+        function BButtonPushed(app, event)
+            global a;
+            value = get(app.OctaveSlider, "value");
+            playTone(a,"D9", 61.74*2^(value+1), 0.5);
+            app.FrequencyGauge.Value = 61.74*2^(value+1);
+        end
+
+        % Button pushed function: CSharp
+        function CSharpButtonPushed(app, event)
+            global a;
+            value = get(app.OctaveSlider, "value");
+            playTone(a,"D9", 34.65*2^(value+1), 0.5);
+            app.FrequencyGauge.Value = 34.65*2^(value+1);
+        end
+
+        % Button pushed function: DSharp
+        function DSharpButtonPushed(app, event)
+            global a;
+            value = get(app.OctaveSlider, "value");
+            playTone(a,"D9", 38.89*2^(value+1), 0.5);
+            app.FrequencyGauge.Value = 38.89*2^(value+1);
+        end
+
+        % Button pushed function: FSharp
+        function FSharpButtonPushed(app, event)
+            global a;
+            value = get(app.OctaveSlider, "value");
+            playTone(a,"D9", 46.25*2^(value+1), 0.5);
+            app.FrequencyGauge.Value = 46.25*2^(value+1);
+        end
+
+        % Button pushed function: GSharp
+        function GSharpButtonPushed(app, event)
+            global a;
+            value = get(app.OctaveSlider, "value");
+            playTone(a,"D9", 58.27*2^(value+1), 0.5);
+            app.FrequencyGauge.Value = 58.27*2^(value+1);
+        end
+
+        % Button pushed function: ASharp
+        function ASharpButtonPushed(app, event)
+            global a;
+            value = get(app.OctaveSlider, "value");
+            playTone(a,"D9", 51.91*2^(value+1), 0.5);
+            app.FrequencyGauge.Value = 51.91*2^(value+1);
+        end
+
+        % Value changed function: OctaveSlider
+        function OctaveSliderValueChanged(app, event)
+            value = app.OctaveSlider.Value;
+        end
+
+        % Button pushed function: PlayHappyBirthdayButton
+        function PlayHappyBirthdayButtonPushed(app, event)
+            global a;   
+            playTone(a,"D9",131, 0.25);
+            app.FrequencyGauge.Value = 131;
+            pause(0.250);
+            playTone(a,"D9",131, 0.25);
+            pause(0.250);
+            playTone(a,"D9",147, 0.25);
+            app.FrequencyGauge.Value = 147;
+            pause(0.500);
+            playTone(a,"D9",131, 0.25);
+            app.FrequencyGauge.Value = 131;
+            pause(0.500);
+            playTone(a,"D9",175, 0.25);
+            app.FrequencyGauge.Value = 175;
+            pause(0.500);
+            playTone(a,"D9",165, 0.25);
+            app.FrequencyGauge.Value = 165;
+            pause(0.5000);
+            playTone(a,"D9",131, 0.25);
+            app.FrequencyGauge.Value = 131;
+            pause(0.250);
+            playTone(a,"D9",131, 0.25);
+            pause(0.250);
+            playTone(a,"D9",147, 0.25);
+            app.FrequencyGauge.Value = 147;
+            pause(0.500);
+            playTone(a,"D9",131, 0.25);
+            app.FrequencyGauge.Value = 131;
+            pause(0.500);
+            playTone(a,"D9",196, 0.25);
+            app.FrequencyGauge.Value = 196;
+            pause(0.500);
+            playTone(a,"D9",175, 0.25);
+            app.FrequencyGauge.Value = 175;
+            pause(0.500);
+            playTone(a,"D9",131, 0.25);
+            app.FrequencyGauge.Value = 131;
+            pause(0.250);
+            playTone(a,"D9",131, 0.25);
+            pause(0.250);
+            playTone(a,"D9",262, 0.25);
+            app.FrequencyGauge.Value = 262;
+            pause(0.500);
+            playTone(a,"D9",220, 0.25);
+            app.FrequencyGauge.Value = 220;
+            pause(0.500);
+            playTone(a,"D9",175, 0.25);
+            app.FrequencyGauge.Value = 175;
+            pause(0.500);
+            playTone(a,"D9",165, 0.25);
+            app.FrequencyGauge.Value = 165;
+            pause(0.500);
+            playTone(a,"D9",147, 0.25);
+            app.FrequencyGauge.Value = 147;
+            pause(0.500);
+            playTone(a,"D9",233, 0.25);
+            app.FrequencyGauge.Value = 233;
+            pause(0.250);
+            playTone(a,"D9",233, 0.25);
+            pause(0.250);
+            playTone(a,"D9",220, 0.25);
+            app.FrequencyGauge.Value = 220;
+            pause(0.500);
+            playTone(a,"D9",175, 0.25);
+            app.FrequencyGauge.Value = 175;
+            pause(0.500);
+            playTone(a,"D9",196, 0.25);
+            app.FrequencyGauge.Value = 196;
+            pause(0.500);
+            playTone(a,"D9",175, 0.25);
+            app.FrequencyGauge.Value = 175;
+            pause(0.1000);
+        end
+
+        % Callback function
+        function PlaySuperMarioBrosButtonPushed(app, event)
+            global a;
+            
+            % doesn't play so well...
+
+            NOTE_E7 = 2637;
+            NOTE_C7 = 2093;
+            NOTE_G7 = 3136;
+            NOTE_G6 = 1568;
+            NOTE_AS6 = 1865;
+            NOTE_B6 = 1976;
+            NOTE_E6 = 1319;
+            NOTE_A6 = 1760;
+            NOTE_A7 = 3520;
+            NOTE_F7 = 2794;
+            NOTE_D7 = 2349;
+
+            playTone(a,"D9", NOTE_E7, 0.25);
+            playTone(a,"D9", NOTE_E7, 0.25);
+            pause(0.25);
+            playTone(a,"D9", NOTE_E7, 0.25);
+            pause(0.25);
+            playTone(a,"D9", NOTE_C7, 0.25);
+            playTone(a,"D9", NOTE_E7, 0.25);
+            pause(0.25);
+            playTone(a,"D9", NOTE_G7, 0.25);
+            pause(0.25);
+            pause(0.25);
+            pause(0.25);
+            playTone(a,"D9", NOTE_G6, 0.25);
+            pause(0.25);
+            pause(0.25);
+            pause(0.25);
+            
+            playTone(a,"D9", NOTE_C7, 0.25);
+            pause(0.25);
+            pause(0.25);
+            playTone(a,"D9", NOTE_G6, 0.25);
+            pause(0.25);
+            pause(0.25);
+            playTone(a,"D9", NOTE_E6, 0.25);
+            pause(0.25);
+            pause(0.25);
+            playTone(a,"D9", NOTE_A6, 0.25);
+            pause(0.25);
+            playTone(a,"D9", NOTE_B6, 0.25);
+            pause(0.25);
+            playTone(a,"D9", NOTE_AS6, 0.25);
+            playTone(a,"D9", NOTE_A6, 0.25);
+            pause(0.25);
+            
+            playTone(a,"D9", NOTE_G6, 0.25);
+            playTone(a,"D9", NOTE_E7, 0.25);
+            playTone(a,"D9", NOTE_G7, 0.25);
+            playTone(a,"D9", NOTE_A7, 0.25);
+            pause(0.25);
+            playTone(a,"D9", NOTE_F7, 0.25);
+            playTone(a,"D9", NOTE_G7, 0.25);
+            pause(0.25);
+            playTone(a,"D9", NOTE_E7, 0.25);
+            pause(0.25);
+            playTone(a,"D9", NOTE_C7, 0.25);
+            playTone(a,"D9", NOTE_D7, 0.25);
+            playTone(a,"D9", NOTE_B6, 0.25);
+            pause(0.25);
+            pause(0.25);
+            
+            playTone(a,"D9", NOTE_C7, 0.25);
+            pause(0.25);
+            pause(0.25);
+            playTone(a,"D9", NOTE_G6, 0.25);
+            pause(0.25);
+            pause(0.25);
+            playTone(a,"D9", NOTE_E6, 0.25);
+            pause(0.25);
+            pause(0.25);
+            playTone(a,"D9", NOTE_A6, 0.25);
+            pause(0.25);
+            playTone(a,"D9", NOTE_B6, 0.25);
+            pause(0.25);
+            playTone(a,"D9", NOTE_AS6, 0.25);
+            playTone(a,"D9", NOTE_A6, 0.25);
+            pause(0.25);
+            
+            playTone(a,"D9", NOTE_G6, 0.25);
+            playTone(a,"D9", NOTE_E7, 0.25);
+            playTone(a,"D9", NOTE_G7, 0.25);
+            playTone(a,"D9", NOTE_A7, 0.25);
+            pause(0.25);
+            playTone(a,"D9", NOTE_F7, 0.25);
+            playTone(a,"D9", NOTE_G7, 0.25);
+            pause(0.25);
+            playTone(a,"D9", NOTE_E7, 0.25);
+            pause(0.25);
+            playTone(a,"D9", NOTE_C7, 0.25);
+            playTone(a,"D9", NOTE_D7, 0.25);
+            playTone(a,"D9", NOTE_B6, 0.25);
+            pause(0.25);
+            pause(0.25);
+        end
+
+        % Button pushed function: PlayrandomnotesButton
+        function PlayrandomnotesButtonPushed(app, event)
+            global a;
+
+            notes = [randi([30 8000],1,10)];
+
+            [~,col] = size(notes);
+            
+            for i=1:col
+                playTone(a,"D9",notes(i), 0.5);
+                pause(0.5);
+            end
+        end
+    end
+
+    % Component initialization
+    methods (Access = private)
+
+        % Create UIFigure and components
+        function createComponents(app)
+
+            % Get the file path for locating images
+            pathToMLAPP = fileparts(mfilename('fullpath'));
+
+            % Create UIFigure and hide until all components are created
+            app.UIFigure = uifigure('Visible', 'off');
+            app.UIFigure.Color = [1 1 1];
+            app.UIFigure.Position = [100 100 664 462];
+            app.UIFigure.Name = 'MATLAB App';
+
+            % Create PianoAppLabel
+            app.PianoAppLabel = uilabel(app.UIFigure);
+            app.PianoAppLabel.HorizontalAlignment = 'center';
+            app.PianoAppLabel.FontName = 'Broadway';
+            app.PianoAppLabel.FontSize = 48;
+            app.PianoAppLabel.Position = [180 366 281 62];
+            app.PianoAppLabel.Text = 'Piano App';
+
+            % Create C
+            app.C = uibutton(app.UIFigure, 'push');
+            app.C.ButtonPushedFcn = createCallbackFcn(app, @CButtonPushed, true);
+            app.C.Position = [160 28 51 218];
+            app.C.Text = '';
+
+            % Create D
+            app.D = uibutton(app.UIFigure, 'push');
+            app.D.ButtonPushedFcn = createCallbackFcn(app, @DButtonPushed, true);
+            app.D.Position = [210 28 51 218];
+            app.D.Text = '';
+
+            % Create E
+            app.E = uibutton(app.UIFigure, 'push');
+            app.E.ButtonPushedFcn = createCallbackFcn(app, @EButtonPushed, true);
+            app.E.Position = [260 28 51 218];
+            app.E.Text = '';
+
+            % Create F
+            app.F = uibutton(app.UIFigure, 'push');
+            app.F.ButtonPushedFcn = createCallbackFcn(app, @FButtonPushed, true);
+            app.F.Position = [310 28 51 218];
+            app.F.Text = '';
+
+            % Create G
+            app.G = uibutton(app.UIFigure, 'push');
+            app.G.ButtonPushedFcn = createCallbackFcn(app, @GButtonPushed, true);
+            app.G.Position = [360 28 51 218];
+            app.G.Text = '';
+
+            % Create A
+            app.A = uibutton(app.UIFigure, 'push');
+            app.A.ButtonPushedFcn = createCallbackFcn(app, @AButtonPushed, true);
+            app.A.Position = [410 28 51 218];
+            app.A.Text = '';
+
+            % Create B
+            app.B = uibutton(app.UIFigure, 'push');
+            app.B.ButtonPushedFcn = createCallbackFcn(app, @BButtonPushed, true);
+            app.B.Position = [460 28 51 218];
+            app.B.Text = '';
+
+            % Create CSharp
+            app.CSharp = uibutton(app.UIFigure, 'push');
+            app.CSharp.ButtonPushedFcn = createCallbackFcn(app, @CSharpButtonPushed, true);
+            app.CSharp.BackgroundColor = [0 0 0];
+            app.CSharp.Position = [190 144 45 102];
+            app.CSharp.Text = ' ';
+
+            % Create DSharp
+            app.DSharp = uibutton(app.UIFigure, 'push');
+            app.DSharp.ButtonPushedFcn = createCallbackFcn(app, @DSharpButtonPushed, true);
+            app.DSharp.BackgroundColor = [0 0 0];
+            app.DSharp.Position = [234 144 45 102];
+            app.DSharp.Text = ' ';
+
+            % Create FSharp
+            app.FSharp = uibutton(app.UIFigure, 'push');
+            app.FSharp.ButtonPushedFcn = createCallbackFcn(app, @FSharpButtonPushed, true);
+            app.FSharp.BackgroundColor = [0 0 0];
+            app.FSharp.Position = [343 144 45 102];
+            app.FSharp.Text = ' ';
+
+            % Create GSharp
+            app.GSharp = uibutton(app.UIFigure, 'push');
+            app.GSharp.ButtonPushedFcn = createCallbackFcn(app, @GSharpButtonPushed, true);
+            app.GSharp.BackgroundColor = [0 0 0];
+            app.GSharp.Position = [431 144 45 102];
+            app.GSharp.Text = ' ';
+
+            % Create ASharp
+            app.ASharp = uibutton(app.UIFigure, 'push');
+            app.ASharp.ButtonPushedFcn = createCallbackFcn(app, @ASharpButtonPushed, true);
+            app.ASharp.BackgroundColor = [0 0 0];
+            app.ASharp.Position = [387 144 45 102];
+            app.ASharp.Text = ' ';
+
+            % Create OctaveSliderLabel
+            app.OctaveSliderLabel = uilabel(app.UIFigure);
+            app.OctaveSliderLabel.HorizontalAlignment = 'right';
+            app.OctaveSliderLabel.Position = [379 302 47 22];
+            app.OctaveSliderLabel.Text = 'Octave:';
+
+            % Create OctaveSlider
+            app.OctaveSlider = uislider(app.UIFigure);
+            app.OctaveSlider.Limits = [1 6];
+            app.OctaveSlider.ValueChangedFcn = createCallbackFcn(app, @OctaveSliderValueChanged, true);
+            app.OctaveSlider.Position = [447 311 150 3];
+            app.OctaveSlider.Value = 1;
+
+            % Create Image
+            app.Image = uiimage(app.UIFigure);
+            app.Image.Position = [27 323 134 130];
+            app.Image.ImageSource = fullfile(pathToMLAPP, 'piano_logo2.jpeg');
+
+            % Create Image3
+            app.Image3 = uiimage(app.UIFigure);
+            app.Image3.Position = [543 92 83 84];
+            app.Image3.ImageSource = fullfile(pathToMLAPP, 'clé_fa.jpg');
+
+            % Create Image4
+            app.Image4 = uiimage(app.UIFigure);
+            app.Image4.Position = [27 87 115 119];
+            app.Image4.ImageSource = fullfile(pathToMLAPP, 'clé_sol.jpg');
+
+            % Create FrequencyGaugeLabel
+            app.FrequencyGaugeLabel = uilabel(app.UIFigure);
+            app.FrequencyGaugeLabel.HorizontalAlignment = 'center';
+            app.FrequencyGaugeLabel.Position = [15 290 62 22];
+            app.FrequencyGaugeLabel.Text = 'Frequency';
+
+            % Create FrequencyGauge
+            app.FrequencyGauge = uigauge(app.UIFigure, 'linear');
+            app.FrequencyGauge.Limits = [0 8000];
+            app.FrequencyGauge.Position = [86 281 275 41];
+
+            % Create PlayHappyBirthdayButton
+            app.PlayHappyBirthdayButton = uibutton(app.UIFigure, 'push');
+            app.PlayHappyBirthdayButton.ButtonPushedFcn = createCallbackFcn(app, @PlayHappyBirthdayButtonPushed, true);
+            app.PlayHappyBirthdayButton.Position = [502 403 124 23];
+            app.PlayHappyBirthdayButton.Text = 'Play Happy Birthday';
+
+            % Create PlayrandomnotesButton
+            app.PlayrandomnotesButton = uibutton(app.UIFigure, 'push');
+            app.PlayrandomnotesButton.ButtonPushedFcn = createCallbackFcn(app, @PlayrandomnotesButtonPushed, true);
+            app.PlayrandomnotesButton.Position = [502 357 124 23];
+            app.PlayrandomnotesButton.Text = 'Play random notes';
+
+            % Show the figure after all components are created
+            app.UIFigure.Visible = 'on';
+        end
+    end
+
+    % App creation and deletion
+    methods (Access = public)
+
+        % Construct app
+        function app = piano_app
+
+            % Create UIFigure and components
+            createComponents(app)
+
+            % Register the app with App Designer
+            registerApp(app, app.UIFigure)
+
+            % Execute the startup function
+            runStartupFcn(app, @startupFcn)
+
+            if nargout == 0
+                clear app
+            end
+        end
+
+        % Code that executes before app deletion
+        function delete(app)
+
+            % Delete UIFigure when app is deleted
+            delete(app.UIFigure)
+        end
+    end
+end
